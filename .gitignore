@@ -1,0 +1,7 @@
+node_modules/
+.wrangler/
+.dev.vars
+family-key.txt
+# 自己的部署設定（含資料庫 id），用 npm run deploy:local 部署
+wrangler.local.jsonc
+*.log

@@ -1,0 +1,16 @@
+{
+  "name": "family-calendar",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "wrangler dev --test-scheduled",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute family-calendar --remote --file=schema.sql",
+    "db:init:local": "wrangler d1 execute family-calendar --local --file=schema.sql",
+    "keys": "node scripts/gen-vapid.mjs",
+    "deploy:local": "wrangler deploy -c wrangler.local.jsonc"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

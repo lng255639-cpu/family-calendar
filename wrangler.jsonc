@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "family-calendar",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-09-01",
+  "assets": { "directory": "./public" },
+  // 每分鐘檢查一次有沒有要提醒的事件
+  "triggers": { "crons": ["* * * * *"] },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "family-calendar",
+      // 換成 `wrangler d1 create family-calendar` 給的 id
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "vars": {
+    // 台灣 UTC+8，重複事件（每月、每年）用這個算日期
+    "TZ_OFFSET_MIN": "480",
+    "VAPID_SUBJECT": "mailto:admin@family-calendar.invalid"
+  }
+  // 機密值用 `wrangler secret put` 設定：FAMILY_KEY、VAPID_PUBLIC_KEY、VAPID_PRIVATE_JWK
+}
